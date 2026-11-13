@@ -11,6 +11,7 @@ import { AppSection } from '../types';
 import { QUIZ_QUESTIONS } from '../data/learningContent';
 import { InteractiveScale, ItemIllustration } from './Illustrations';
 import { MascotHelper } from './MascotHelper';
+import { CelebrationBurst } from './CelebrationBurst';
 import { soundEngine } from '../utils/sound';
 
 interface KuisViewProps {
@@ -243,12 +244,13 @@ export const KuisView: React.FC<KuisViewProps> = ({
 
         {answered && (
           <div
-            className={`flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-2xl p-5 border animate-gentle-pop ${
+            className={`relative flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-2xl p-5 border animate-gentle-pop ${
               isCurrentCorrect
                 ? 'bg-emerald-50 border-emerald-200'
                 : 'bg-orange-50 border-orange-200'
             }`}
           >
+            <CelebrationBurst active={Boolean(isCurrentCorrect)} />
             <div className="space-y-1">
               <p
                 className={`font-display font-extrabold text-lg flex items-center gap-2 ${

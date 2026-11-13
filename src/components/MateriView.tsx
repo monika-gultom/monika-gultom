@@ -59,6 +59,7 @@ export const MateriView: React.FC<MateriViewProps> = ({
   const [step, setStep] = useState<number>(1);
   const [selectedItem, setSelectedItem] = useState(LEARNING_ITEMS[0]);
   const [selectedScaleIdx, setSelectedScaleIdx] = useState(0);
+  const [scaleTestItem, setScaleTestItem] = useState<{ item: ItemKey; label: string; grams: number } | null>(null);
   const [selectedKg, setSelectedKg] = useState(1);
   const [unitCheckFeedback, setUnitCheckFeedback] = useState<Record<string, 'correct' | 'wrong'>>({});
   const [leftCompare, setLeftCompare] = useState(COMPARE_OPTIONS[1]); // Apel 150g
@@ -256,13 +257,37 @@ export const MateriView: React.FC<MateriViewProps> = ({
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center bg-amber-50/60 border border-amber-200 rounded-2xl p-6">
-              <div className="lg:col-span-5 flex justify-center">
+              <div className="lg:col-span-5 flex flex-col items-center gap-3">
                 <InteractiveScale
                   type={currentScale.id}
-                  grams={currentScale.sampleGrams}
-                  label={currentScale.sampleWeightLabel}
-                  item={currentScale.sampleItem}
+                  grams={scaleTestItem ? scaleTestItem.grams : currentScale.sampleGrams}
+                  label={scaleTestItem ? scaleTestItem.label : currentScale.sampleWeightLabel}
+                  item={scaleTestItem ? scaleTestItem.item : currentScale.sampleItem}
                 />
+                <div className="flex flex-wrap justify-center gap-2">
+                  {[
+                    { item: 'apel' as ItemKey, name: 'Apel', label: '150 g', grams: 150 },
+                    { item: 'semangka' as ItemKey, name: 'Semangka', label: '2 kg', grams: 2000 },
+                    { item: 'beras' as ItemKey, name: 'Beras', label: '5 kg', grams: 5000 },
+                  ].map((test) => (
+                    <button
+                      key={test.item}
+                      type="button"
+                      onClick={() => {
+                        soundEngine.playClick();
+                        setScaleTestItem(test);
+                        onCompleteLesson(2);
+                      }}
+                      className={`px-3 py-1.5 rounded-lg text-xs font-bold border transition-colors cursor-pointer ${
+                        (scaleTestItem?.item ?? currentScale.sampleItem) === test.item
+                          ? 'bg-orange-500 text-white border-orange-500'
+                          : 'bg-white text-slate-700 border-amber-200 hover:bg-orange-50'
+                      }`}
+                    >
+                      Timbang {test.name}
+                    </button>
+                  ))}
+                </div>
               </div>
               <div className="lg:col-span-7 space-y-3">
                 <h3 className="font-display font-extrabold text-2xl text-slate-900">

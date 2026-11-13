@@ -212,6 +212,21 @@ export const BerandaView: React.FC<BerandaViewProps> = ({
           </button>
         </div>
       </section>
+
+      {/* Tujuan Pembelajaran */}
+      <section aria-labelledby="tujuan-heading" className="bg-white rounded-3xl border border-sky-100 shadow-sm p-6 sm:p-8 space-y-4">
+        <h2 id="tujuan-heading" className="font-display font-bold text-xl sm:text-2xl text-slate-900">
+          Tujuan Pembelajaran Kita Hari Ini
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-2.5 text-base text-slate-700">
+          <p>1. Mengenal pengertian satuan berat.</p>
+          <p>2. Mengenal alat ukur berat (timbangan).</p>
+          <p>3. Mengenal satuan kilogram (kg) dan gram (g).</p>
+          <p>4. Memahami hubungan 1 kg = 1.000 gram.</p>
+          <p>5. Membandingkan berat dua benda.</p>
+          <p>6. Memperkirakan &amp; menyelesaikan soal satuan berat.</p>
+        </div>
+      </section>
     </div>
   );
 };

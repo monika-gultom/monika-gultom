@@ -3,6 +3,7 @@ import { ArrowRight, CheckCircle2, RotateCcw, ShoppingBasket, XCircle } from 'lu
 import { ItemKey } from '../../types';
 import { ItemIllustration, ResilientImage } from '../Illustrations';
 import { MascotHelper } from '../MascotHelper';
+import { CelebrationBurst } from '../CelebrationBurst';
 import { soundEngine } from '../../utils/sound';
 
 interface MarketProduct {
@@ -290,7 +291,7 @@ export const GamePasarCeria: React.FC<GamePasarCeriaProps> = ({
 
           {feedbackMsg && (
             <div
-              className={`flex flex-wrap items-center justify-between gap-3 rounded-2xl p-4 border font-bold text-base ${
+              className={`relative flex flex-wrap items-center justify-between gap-3 rounded-2xl p-4 border font-bold text-base ${
                 status === 'correct'
                   ? 'bg-emerald-50 border-emerald-200 text-emerald-900 animate-gentle-pop'
                   : status === 'wrong'
@@ -298,6 +299,7 @@ export const GamePasarCeria: React.FC<GamePasarCeriaProps> = ({
                   : 'bg-sky-50 border-sky-200 text-sky-900'
               }`}
             >
+              <CelebrationBurst active={status === 'correct'} />
               <div className="flex items-center gap-2">
                 {status === 'correct' && <CheckCircle2 className="w-6 h-6 text-emerald-600 shrink-0" />}
                 {status === 'wrong' && <XCircle className="w-6 h-6 text-orange-600 shrink-0" />}

@@ -3,6 +3,7 @@ import { ArrowRight, CheckCircle2, RotateCcw, Scale, XCircle } from 'lucide-reac
 import { ItemKey } from '../../types';
 import { BalanceScaleInteractive } from '../Illustrations';
 import { MascotHelper } from '../MascotHelper';
+import { CelebrationBurst } from '../CelebrationBurst';
 import { soundEngine } from '../../utils/sound';
 
 interface BalanceRound {
@@ -256,7 +257,8 @@ export const GameTimbanganAjaib: React.FC<GameTimbanganAjaibProps> = ({
           </div>
 
           {status === 'correct' && (
-            <div className="flex flex-wrap items-center justify-between gap-3 bg-emerald-50 border border-emerald-200 rounded-2xl p-4 animate-gentle-pop">
+            <div className="relative flex flex-wrap items-center justify-between gap-3 bg-emerald-50 border border-emerald-200 rounded-2xl p-4 animate-gentle-pop">
+              <CelebrationBurst active={true} />
               <div className="flex items-start gap-2.5">
                 <CheckCircle2 className="w-6 h-6 text-emerald-600 shrink-0 mt-0.5" />
                 <div>

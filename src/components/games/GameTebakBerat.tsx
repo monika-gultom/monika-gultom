@@ -3,6 +3,7 @@ import { ArrowRight, CheckCircle2, RotateCcw, XCircle } from 'lucide-react';
 import { ItemKey } from '../../types';
 import { ItemIllustration } from '../Illustrations';
 import { MascotHelper } from '../MascotHelper';
+import { CelebrationBurst } from '../CelebrationBurst';
 import { soundEngine } from '../../utils/sound';
 
 interface TebakRound {
@@ -249,7 +250,8 @@ export const GameTebakBerat: React.FC<GameTebakBeratProps> = ({
             </div>
 
             {status === 'correct' && (
-              <div className="flex flex-wrap items-center justify-between gap-3 bg-emerald-50 border border-emerald-200 rounded-2xl p-4 animate-gentle-pop">
+              <div className="relative flex flex-wrap items-center justify-between gap-3 bg-emerald-50 border border-emerald-200 rounded-2xl p-4 animate-gentle-pop">
+                <CelebrationBurst active={true} />
                 <div className="flex items-center gap-2 text-emerald-900 font-bold text-base sm:text-lg">
                   <CheckCircle2 className="w-6 h-6 text-emerald-600 shrink-0" />
                   <span>Hore! Jawaban kamu benar! (+10 Poin)</span>
